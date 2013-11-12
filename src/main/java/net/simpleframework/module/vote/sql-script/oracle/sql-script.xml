@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-script>
+  <version>1.0.0</version>
+  <name>script</name>
+  <description></description>
+  <tran-sql>
+    <![CDATA[
+      create table sf_vote (
+        id char(32) not null,
+        votemark number(11) not null,
+        text varchar2(32) not null,
+        createdate timestamp not null,
+        userid char(32) not null,
+        expireddate timestamp,
+        status number(4) not null,
+        groups number(1) not null,
+        anonymous number(1) not null,
+        logging number(1) not null, 
+        multiple number(4) not null,
+        description varchar2(256),
+        primary key(id)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_voter (
+        id char(32) not null,
+        voteid char(32) not null,
+        contentid char(32) not null,
+        primary key(id),
+        unique(voteid, contentid)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_vote_group (
+        id char(32) not null,
+        voteid char(32) not null,
+        text varchar2(32) not null,
+        multiple number(4) not null,
+        description varchar2(256),
+        oorder number(11) not null,
+        primary key(id),
+        unique(voteid, text)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_vote_item (
+        id char(32) not null,
+        voteid char(32) not null,
+        groupid char(32),
+        text varchar2(32) not null,
+        votes number(11) not null,
+        description varchar2(256),
+        oorder number(11) not null,
+        primary key(id),
+        unique(voteid, groupid, text)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_vote_log (
+        id char(32) not null,
+        voteid char(32) not null,
+        itemid char(32) not null,
+        createdate timestamp not null,
+        userid char(32),
+        ip varchar2(32),
+        primary key(id),
+        unique(itemid, userid)
+      );
+    ]]>
+  </tran-sql>
+</sql-script>

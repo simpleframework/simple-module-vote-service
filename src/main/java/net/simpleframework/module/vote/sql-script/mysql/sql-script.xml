@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-script>
+  <version>1.0.0</version>
+  <name>script</name>
+  <description></description>
+  <tran-sql>
+    <![CDATA[
+      create table sf_vote (
+        id char(32) not null,
+        votemark int not null,
+        text varchar(32) not null,
+        createdate datetime not null,
+        userid char(32) not null,
+        expireddate datetime,
+        status tinyint not null,
+        groups bit not null,
+        anonymous bit not null,
+        logging bit not null, 
+        multiple tinyint not null,
+        description varchar(256),
+        primary key(id)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_voter (
+        id char(32) not null,
+        voteid char(32) not null,
+        contentid char(32) not null,
+        primary key(id),
+        unique(voteid, contentid)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_vote_group (
+        id char(32) not null,
+        voteid char(32) not null,
+        text varchar(32) not null,
+        multiple tinyint not null,
+        description varchar(256),
+        oorder int not null,
+        primary key(id),
+        unique(voteid, text)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_vote_item (
+        id char(32) not null,
+        voteid char(32) not null,
+        groupid char(32),
+        text varchar(32) not null,
+        votes int not null,
+        description varchar(256),
+        oorder int not null,
+        primary key(id),
+        unique(voteid, groupid, text)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_vote_log (
+        id char(32) not null,
+        voteid char(32) not null,
+        itemid char(32) not null,
+        createdate datetime not null,
+        userid char(32),
+        ip varchar(32),
+        primary key(id),
+        unique(itemid, userid)
+      );
+    ]]>
+  </tran-sql>
+</sql-script>
