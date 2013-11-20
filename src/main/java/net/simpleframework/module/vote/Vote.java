@@ -46,6 +46,9 @@ public class Vote extends AbstractTextDescriptionBean {
 	/* 含有分组 */
 	private boolean groups;
 
+	/** 排序 **/
+	private int oorder;
+
 	public int getVoteMark() {
 		return voteMark;
 	}
@@ -116,6 +119,14 @@ public class Vote extends AbstractTextDescriptionBean {
 
 	public void setGroups(final boolean groups) {
 		this.groups = groups;
+	}
+
+	public int getOorder() {
+		return oorder;
+	}
+
+	public void setOorder(final int oorder) {
+		this.oorder = oorder;
 	}
 
 	public static final DbEntityTable TBL = new DbEntityTable(Vote.class, "sf_vote");

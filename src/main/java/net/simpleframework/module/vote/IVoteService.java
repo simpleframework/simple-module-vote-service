@@ -28,4 +28,12 @@ public interface IVoteService extends IDbBeanService<Vote> {
 	IDataQuery<Vote> queryVote(int voteMark, Object userId);
 
 	IDataQuery<Vote> queryVote(int voteMark);
+
+	/**
+	 * 获取关联的投票
+	 * 
+	 * @param bean
+	 * @return
+	 */
+	IDataQuery<?> queryVotes(Object contentId);
 }

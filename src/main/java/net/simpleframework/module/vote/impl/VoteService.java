@@ -3,6 +3,7 @@ package net.simpleframework.module.vote.impl;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.db.common.ExpressionValue;
+import net.simpleframework.ado.db.common.SQLValue;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ID;
@@ -40,6 +41,14 @@ public class VoteService extends AbstractVoteService<Vote> implements IVoteServi
 			return DataQueryUtils.nullQuery();
 		}
 		return query("votemark=? and userId=?", voteMark, userId);
+	}
+
+	@Override
+	public IDataQuery<?> queryVotes(final Object contentId) {
+		return getEntityManager().queryBeans(
+				new SQLValue("select a.* from " + Vote.TBL.getName() + " a right join "
+						+ VoteR.TBL.getName()
+						+ " b on a.id = b.voteid where b.contentid=? order by a.oorder", contentId));
 	}
 
 	@Override

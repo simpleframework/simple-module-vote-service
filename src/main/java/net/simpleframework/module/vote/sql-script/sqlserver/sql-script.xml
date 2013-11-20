@@ -18,6 +18,7 @@
         logging smallint not null, 
         multiple smallint not null,
         description varchar(256),
+        oorder int not null,
         primary key(id)
       );
     ]]>

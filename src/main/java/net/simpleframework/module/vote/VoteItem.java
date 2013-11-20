@@ -23,7 +23,7 @@ public class VoteItem extends AbstractTextDescriptionBean implements IOrderBeanA
 	/* 投票数 */
 	private int votes;
 
-	private long oorder;
+	private int oorder;
 
 	public int getVotes() {
 		return votes;
@@ -50,12 +50,12 @@ public class VoteItem extends AbstractTextDescriptionBean implements IOrderBeanA
 	}
 
 	@Override
-	public long getOorder() {
+	public int getOorder() {
 		return oorder;
 	}
 
 	@Override
-	public void setOorder(final long oorder) {
+	public void setOorder(final int oorder) {
 		this.oorder = oorder;
 	}
 

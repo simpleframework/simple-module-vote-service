@@ -19,7 +19,7 @@ public class VoteGroup extends AbstractTextDescriptionBean implements IOrderBean
 	/* 是否可以多选 */
 	private short multiple;
 
-	private long oorder;
+	private int oorder;
 
 	public ID getVoteId() {
 		return voteId;
@@ -38,12 +38,12 @@ public class VoteGroup extends AbstractTextDescriptionBean implements IOrderBean
 	}
 
 	@Override
-	public long getOorder() {
+	public int getOorder() {
 		return oorder;
 	}
 
 	@Override
-	public void setOorder(final long oorder) {
+	public void setOorder(final int oorder) {
 		this.oorder = oorder;
 	}
 
