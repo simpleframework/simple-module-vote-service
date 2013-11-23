@@ -22,7 +22,7 @@ public class VoteItemService extends AbstractVoteService<VoteItem> implements IV
 		if (vote == null) {
 			return DataQueryUtils.nullQuery();
 		}
-		return query("voteId=?", vote.getId());
+		return query("voteId=? order by oorder", vote.getId());
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class VoteItemService extends AbstractVoteService<VoteItem> implements IV
 		if (vg == null) {
 			return DataQueryUtils.nullQuery();
 		}
-		return query("groupId=?", vg.getId());
+		return query("groupId=? order by oorder", vg.getId());
 	}
 
 	@Override
