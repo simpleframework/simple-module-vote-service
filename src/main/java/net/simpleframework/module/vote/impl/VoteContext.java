@@ -1,7 +1,9 @@
 package net.simpleframework.module.vote.impl;
 
 import static net.simpleframework.common.I18n.$m;
-import net.simpleframework.ado.db.DbEntityTable;
+import net.simpleframework.ado.IADOManagerFactory;
+import net.simpleframework.ado.db.DbManagerFactory;
+import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.module.common.AbstractCommonModuleContext;
 import net.simpleframework.module.vote.IVoteContext;
@@ -24,9 +26,14 @@ import net.simpleframework.module.vote.VoteR;
 public abstract class VoteContext extends AbstractCommonModuleContext implements IVoteContext {
 
 	@Override
-	protected DbEntityTable[] getEntityTables() {
+	public void onInit(final IApplicationContext application) throws Exception {
+		super.onInit(application);
 
-		return new DbEntityTable[] { Vote.TBL, VoteR.TBL, VoteGroup.TBL, VoteItem.TBL, VoteLog.TBL };
+		final IADOManagerFactory aFactory = getADOManagerFactory();
+		if (aFactory instanceof DbManagerFactory) {
+			((DbManagerFactory) aFactory).regist(Vote.TBL, VoteR.TBL, VoteGroup.TBL, VoteItem.TBL,
+					VoteLog.TBL);
+		}
 	}
 
 	@Override
