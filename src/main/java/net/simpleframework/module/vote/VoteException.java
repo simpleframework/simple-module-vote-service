@@ -19,7 +19,7 @@ public class VoteException extends ModuleException {
 	}
 
 	public static VoteException of(final Throwable throwable) {
-		return (VoteException) _of(VoteException.class, null, throwable);
+		return _of(VoteException.class, null, throwable);
 	}
 
 	private static final long serialVersionUID = 4637853474785248529L;
