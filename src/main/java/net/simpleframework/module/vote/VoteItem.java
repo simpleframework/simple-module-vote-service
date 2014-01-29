@@ -2,7 +2,6 @@ package net.simpleframework.module.vote;
 
 import net.simpleframework.ado.bean.AbstractTextDescriptionBean;
 import net.simpleframework.ado.bean.IOrderBeanAware;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 
@@ -58,8 +57,6 @@ public class VoteItem extends AbstractTextDescriptionBean implements IOrderBeanA
 	public void setOorder(final int oorder) {
 		this.oorder = oorder;
 	}
-
-	public static final DbEntityTable TBL = new DbEntityTable(VoteItem.class, "sf_vote_item");
 
 	private static final long serialVersionUID = 9162644513334175204L;
 }

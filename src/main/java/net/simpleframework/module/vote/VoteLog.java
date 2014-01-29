@@ -1,7 +1,6 @@
 package net.simpleframework.module.vote;
 
 import net.simpleframework.ado.bean.AbstractUserAwareBean;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.common.ID;
 
 /**
@@ -42,8 +41,6 @@ public class VoteLog extends AbstractUserAwareBean {
 	public void setIp(final String ip) {
 		this.ip = ip;
 	}
-
-	public static final DbEntityTable TBL = new DbEntityTable(VoteLog.class, "sf_vote_log");
 
 	private static final long serialVersionUID = 3038260625073427675L;
 }

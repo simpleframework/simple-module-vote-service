@@ -26,7 +26,11 @@ public abstract class VoteContext extends AbstractCommonModuleContext implements
 		IDbEntityTableRegistry {
 	@Override
 	public DbEntityTable[] createEntityTables() {
-		return new DbEntityTable[] { Vote.TBL, VoteR.TBL, VoteGroup.TBL, VoteItem.TBL, VoteLog.TBL };
+		return new DbEntityTable[] { new DbEntityTable(Vote.class, "sf_vote"),
+				new DbEntityTable(VoteR.class, "sf_voter"),
+				new DbEntityTable(VoteGroup.class, "sf_vote_group"),
+				new DbEntityTable(VoteItem.class, "sf_vote_item"),
+				new DbEntityTable(VoteLog.class, "sf_vote_log") };
 	}
 
 	@Override

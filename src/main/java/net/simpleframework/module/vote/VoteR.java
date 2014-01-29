@@ -1,7 +1,6 @@
 package net.simpleframework.module.vote;
 
 import net.simpleframework.ado.bean.AbstractIdBean;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.common.ID;
 
 /**
@@ -33,8 +32,6 @@ public class VoteR extends AbstractIdBean {
 	public void setContentId(final ID contentId) {
 		this.contentId = contentId;
 	}
-
-	public static final DbEntityTable TBL = new DbEntityTable(VoteR.class, "sf_voter");
 
 	private static final long serialVersionUID = -5508574948035204731L;
 }

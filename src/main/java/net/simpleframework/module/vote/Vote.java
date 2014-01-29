@@ -3,7 +3,6 @@ package net.simpleframework.module.vote;
 import java.util.Date;
 
 import net.simpleframework.ado.bean.AbstractTextDescriptionBean;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 import net.simpleframework.module.common.content.EContentStatus;
@@ -128,8 +127,6 @@ public class Vote extends AbstractTextDescriptionBean {
 	public void setOorder(final int oorder) {
 		this.oorder = oorder;
 	}
-
-	public static final DbEntityTable TBL = new DbEntityTable(Vote.class, "sf_vote");
 
 	private static final long serialVersionUID = -7313302415764825936L;
 }
