@@ -3,6 +3,7 @@ package net.simpleframework.module.vote;
 import java.util.Date;
 
 import net.simpleframework.ado.bean.AbstractTextDescriptionBean;
+import net.simpleframework.ado.bean.IDateAwareBean;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 import net.simpleframework.module.common.content.EContentStatus;
@@ -16,7 +17,7 @@ import net.simpleframework.module.common.content.EContentStatus;
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityUpdateLogAdapter",
 		"net.simpleframework.module.log.EntityDeleteLogAdapter" }, columns = { "expiredDate",
 		"status", "anonymous", "multiple", "logging" })
-public class Vote extends AbstractTextDescriptionBean {
+public class Vote extends AbstractTextDescriptionBean implements IDateAwareBean {
 
 	/* 投票标识 */
 	private int voteMark;
@@ -56,10 +57,12 @@ public class Vote extends AbstractTextDescriptionBean {
 		this.voteMark = voteMark;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return createDate;
 	}
 
+	@Override
 	public void setCreateDate(final Date createDate) {
 		this.createDate = createDate;
 	}
