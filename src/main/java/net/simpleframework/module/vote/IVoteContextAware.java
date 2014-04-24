@@ -11,5 +11,5 @@ import net.simpleframework.ctx.ModuleContextFactory;
  */
 public interface IVoteContextAware extends IModuleContextAware {
 
-	static IVoteContext context = ModuleContextFactory.get(IVoteContext.class);
+	static IVoteContext voteContext = ModuleContextFactory.get(IVoteContext.class);
 }

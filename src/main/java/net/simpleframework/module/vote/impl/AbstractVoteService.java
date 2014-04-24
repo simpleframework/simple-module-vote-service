@@ -13,18 +13,18 @@ public abstract class AbstractVoteService<T> extends AbstractDbBeanService<T> im
 		IVoteContextAware {
 
 	protected VoteService getVoteService() {
-		return (VoteService) context.getVoteService();
+		return (VoteService) voteContext.getVoteService();
 	}
 
 	protected VoteGroupService getVoteGroupService() {
-		return (VoteGroupService) context.getVoteGroupService();
+		return (VoteGroupService) voteContext.getVoteGroupService();
 	}
 
 	protected VoteItemService getVoteItemService() {
-		return (VoteItemService) context.getVoteItemService();
+		return (VoteItemService) voteContext.getVoteItemService();
 	}
 
 	protected VoteLogService getVoteLogService() {
-		return (VoteLogService) context.getVoteLogService();
+		return (VoteLogService) voteContext.getVoteLogService();
 	}
 }
