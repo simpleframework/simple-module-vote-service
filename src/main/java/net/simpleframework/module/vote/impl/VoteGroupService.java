@@ -4,6 +4,8 @@ import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
+import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
+import net.simpleframework.module.vote.IVoteContextAware;
 import net.simpleframework.module.vote.IVoteGroupService;
 import net.simpleframework.module.vote.Vote;
 import net.simpleframework.module.vote.VoteGroup;
@@ -14,7 +16,8 @@ import net.simpleframework.module.vote.VoteGroup;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class VoteGroupService extends AbstractVoteService<VoteGroup> implements IVoteGroupService {
+public class VoteGroupService extends AbstractDbBeanService<VoteGroup> implements
+		IVoteGroupService, IVoteContextAware {
 
 	@Override
 	public IDataQuery<VoteGroup> query(final Vote vote) {
@@ -33,7 +36,7 @@ public class VoteGroupService extends AbstractVoteService<VoteGroup> implements 
 					final IParamsValue paramsValue) {
 				super.onBeforeDelete(service, paramsValue);
 				for (final VoteGroup vg : coll(paramsValue)) {
-					getVoteItemService().deleteWith("groupId=?", vg.getId());
+					viService.deleteWith("groupId=?", vg.getId());
 				}
 			}
 		});

@@ -7,6 +7,8 @@ import net.simpleframework.ado.db.common.SQLValue;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ID;
+import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
+import net.simpleframework.module.vote.IVoteContextAware;
 import net.simpleframework.module.vote.IVoteService;
 import net.simpleframework.module.vote.Vote;
 import net.simpleframework.module.vote.VoteR;
@@ -17,7 +19,8 @@ import net.simpleframework.module.vote.VoteR;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class VoteService extends AbstractVoteService<Vote> implements IVoteService {
+public class VoteService extends AbstractDbBeanService<Vote> implements IVoteService,
+		IVoteContextAware {
 
 	@Override
 	public void insertToContent(final Vote vote, final Object contentId) {
@@ -61,12 +64,12 @@ public class VoteService extends AbstractVoteService<Vote> implements IVoteServi
 				for (final Vote vote : coll(paramsValue)) {
 					final ID voteId = vote.getId();
 					if (vote.isGroups()) {
-						getVoteGroupService().deleteWith("voteId=?", voteId);
+						vgService.deleteWith("voteId=?", voteId);
 					} else {
-						getVoteItemService().deleteWith("voteId=?", voteId);
+						viService.deleteWith("voteId=?", voteId);
 					}
 					getEntityManager(VoteR.class).delete(new ExpressionValue("voteId=?", voteId));
-					getVoteLogService().deleteWith("voteId=?", voteId);
+					vlogService.deleteWith("voteId=?", voteId);
 				}
 			}
 		});

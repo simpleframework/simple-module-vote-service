@@ -7,6 +7,8 @@ import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
+import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
+import net.simpleframework.module.vote.IVoteContextAware;
 import net.simpleframework.module.vote.IVoteLogService;
 import net.simpleframework.module.vote.Vote;
 import net.simpleframework.module.vote.VoteItem;
@@ -18,7 +20,8 @@ import net.simpleframework.module.vote.VoteLog;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class VoteLogService extends AbstractVoteService<VoteLog> implements IVoteLogService {
+public class VoteLogService extends AbstractDbBeanService<VoteLog> implements IVoteLogService,
+		IVoteContextAware {
 
 	@Override
 	public IDataQuery<VoteLog> query(final VoteItem item) {
@@ -58,37 +61,30 @@ public class VoteLogService extends AbstractVoteService<VoteLog> implements IVot
 	@Override
 	public void onInit() throws Exception {
 		super.onInit();
-		final VoteItemService itemService = getVoteItemService();
 
 		addListener(new DbEntityAdapterEx() {
-			@Override
-			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans) {
-				super.onAfterInsert(manager, beans);
-				for (final Object o : beans) {
-					updateVotes((VoteLog) o);
-				}
-			}
-
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> manager,
 					final IParamsValue paramsValue) {
 				super.onBeforeDelete(manager, paramsValue);
-				coll(paramsValue); // 删除前缓存
-			}
-
-			@Override
-			public void onAfterDelete(final IDbEntityManager<?> manager, final IParamsValue paramsValue) {
-				super.onAfterDelete(manager, paramsValue);
 				for (final VoteLog log : coll(paramsValue)) {
-					updateVotes(log);
+					updateVotes(log, -1);
 				}
 			}
 
-			private void updateVotes(final VoteLog log) {
-				final VoteItem item = itemService.getBean(log.getItemId());
+			@Override
+			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans) {
+				super.onAfterInsert(manager, beans);
+				for (final Object o : beans) {
+					updateVotes((VoteLog) o, 0);
+				}
+			}
+
+			private void updateVotes(final VoteLog log, final int i) {
+				final VoteItem item = viService.getBean(log.getItemId());
 				if (item != null) {
-					item.setVotes(query(item).getCount());
-					itemService.update(new String[] { "votes" }, item);
+					item.setVotes(query(item).getCount() + i);
+					viService.update(new String[] { "votes" }, item);
 				}
 			}
 		});
