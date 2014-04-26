@@ -17,7 +17,7 @@ import net.simpleframework.module.vote.VoteItem;
  *         http://www.simpleframework.net
  */
 public class VoteItemService extends AbstractDbBeanService<VoteItem> implements IVoteItemService,
-		IVoteServiceAware {
+		IVoteServiceImplAware {
 
 	@Override
 	public IDataQuery<VoteItem> query(final Vote vote) {

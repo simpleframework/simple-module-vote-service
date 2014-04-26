@@ -19,7 +19,7 @@ import net.simpleframework.module.vote.VoteR;
  *         http://www.simpleframework.net
  */
 public class VoteService extends AbstractDbBeanService<Vote> implements IVoteService,
-		IVoteServiceAware {
+		IVoteServiceImplAware {
 
 	@Override
 	public void insertToContent(final Vote vote, final Object contentId) {

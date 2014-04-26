@@ -16,7 +16,7 @@ import net.simpleframework.module.vote.VoteGroup;
  *         http://www.simpleframework.net
  */
 public class VoteGroupService extends AbstractDbBeanService<VoteGroup> implements
-		IVoteGroupService, IVoteServiceAware {
+		IVoteGroupService, IVoteServiceImplAware {
 
 	@Override
 	public IDataQuery<VoteGroup> query(final Vote vote) {

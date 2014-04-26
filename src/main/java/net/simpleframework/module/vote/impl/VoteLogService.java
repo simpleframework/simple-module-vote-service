@@ -20,7 +20,7 @@ import net.simpleframework.module.vote.VoteLog;
  *         http://www.simpleframework.net
  */
 public class VoteLogService extends AbstractDbBeanService<VoteLog> implements IVoteLogService,
-		IVoteServiceAware {
+		IVoteServiceImplAware {
 
 	@Override
 	public IDataQuery<VoteLog> query(final VoteItem item) {
