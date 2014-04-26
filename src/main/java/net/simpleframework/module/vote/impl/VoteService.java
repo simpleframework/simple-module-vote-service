@@ -8,7 +8,6 @@ import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.ID;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
-import net.simpleframework.module.vote.IVoteContextAware;
 import net.simpleframework.module.vote.IVoteService;
 import net.simpleframework.module.vote.Vote;
 import net.simpleframework.module.vote.VoteR;
@@ -20,7 +19,7 @@ import net.simpleframework.module.vote.VoteR;
  *         http://www.simpleframework.net
  */
 public class VoteService extends AbstractDbBeanService<Vote> implements IVoteService,
-		IVoteContextAware {
+		IVoteServiceAware {
 
 	@Override
 	public void insertToContent(final Vote vote, final Object contentId) {

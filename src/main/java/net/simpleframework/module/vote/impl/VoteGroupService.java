@@ -5,7 +5,6 @@ import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
-import net.simpleframework.module.vote.IVoteContextAware;
 import net.simpleframework.module.vote.IVoteGroupService;
 import net.simpleframework.module.vote.Vote;
 import net.simpleframework.module.vote.VoteGroup;
@@ -17,7 +16,7 @@ import net.simpleframework.module.vote.VoteGroup;
  *         http://www.simpleframework.net
  */
 public class VoteGroupService extends AbstractDbBeanService<VoteGroup> implements
-		IVoteGroupService, IVoteContextAware {
+		IVoteGroupService, IVoteServiceAware {
 
 	@Override
 	public IDataQuery<VoteGroup> query(final Vote vote) {
