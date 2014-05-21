@@ -19,8 +19,7 @@
         multiple number(4) not null,
         description varchar2(256),
         oorder number(11) not null,
-        primary key(id),
-        unique (oorder)
+        primary key(id)
       );
     ]]>
   </tran-sql>
@@ -45,8 +44,7 @@
         description varchar2(256),
         oorder number(11) not null,
         primary key(id),
-        unique(voteid, text),
-        unique (oorder)
+        unique(voteid, text)
       );
     ]]>
   </tran-sql>
@@ -61,8 +59,7 @@
         description varchar2(256),
         oorder number(11) not null,
         primary key(id),
-        unique(voteid, groupid, text),
-        unique (oorder)
+        unique(voteid, groupid, text)
       );
     ]]>
   </tran-sql>
