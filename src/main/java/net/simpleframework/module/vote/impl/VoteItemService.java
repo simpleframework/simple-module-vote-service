@@ -42,6 +42,8 @@ public class VoteItemService extends AbstractDbBeanService<VoteItem> implements 
 
 	@Override
 	public void onInit() throws Exception {
+		super.onInit();
+
 		addListener(new DbEntityAdapterEx() {
 
 			@Override

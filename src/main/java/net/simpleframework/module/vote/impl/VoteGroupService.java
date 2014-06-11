@@ -28,6 +28,8 @@ public class VoteGroupService extends AbstractDbBeanService<VoteGroup> implement
 
 	@Override
 	public void onInit() throws Exception {
+		super.onInit();
+
 		addListener(new DbEntityAdapterEx() {
 
 			@Override

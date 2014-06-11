@@ -55,6 +55,8 @@ public class VoteService extends AbstractDbBeanService<Vote> implements IVoteSer
 
 	@Override
 	public void onInit() throws Exception {
+		super.onInit();
+
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> service,
