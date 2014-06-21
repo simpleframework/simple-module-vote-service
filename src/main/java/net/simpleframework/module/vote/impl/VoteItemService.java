@@ -29,7 +29,7 @@ public class VoteItemService extends AbstractDbBeanService<VoteItem> implements 
 
 	@Override
 	public int sum(final Vote vote) {
-		return vote == null ? 0 : sum("votes", "voteId=?", vote.getId());
+		return vote == null ? 0 : sum("votes", "voteId=?", vote.getId()).intValue();
 	}
 
 	@Override
