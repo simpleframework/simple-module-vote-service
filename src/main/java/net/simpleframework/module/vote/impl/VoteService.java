@@ -47,10 +47,9 @@ public class VoteService extends AbstractDbBeanService<Vote> implements IVoteSer
 
 	@Override
 	public IDataQuery<?> queryVotes(final Object contentId) {
-		return getEntityManager().queryBeans(
-				new SQLValue("select a.* from " + getTablename(Vote.class) + " a right join "
-						+ getTablename(VoteR.class)
-						+ " b on a.id = b.voteid where b.contentid=? order by a.oorder", contentId));
+		return query(new SQLValue("select a.* from " + getTablename(Vote.class) + " a right join "
+				+ getTablename(VoteR.class)
+				+ " b on a.id = b.voteid where b.contentid=? order by a.oorder", contentId));
 	}
 
 	@Override
