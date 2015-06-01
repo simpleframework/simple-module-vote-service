@@ -59,7 +59,7 @@ public class VoteService extends AbstractDbBeanService<Vote> implements IVoteSer
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> service,
-					final IParamsValue paramsValue) {
+					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(service, paramsValue);
 				for (final Vote vote : coll(paramsValue)) {
 					final ID voteId = vote.getId();

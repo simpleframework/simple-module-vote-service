@@ -64,7 +64,7 @@ public class VoteLogService extends AbstractDbBeanService<VoteLog> implements IV
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> manager,
-					final IParamsValue paramsValue) {
+					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
 				for (final VoteLog log : coll(paramsValue)) {
 					updateVotes(log, -1);
@@ -72,7 +72,8 @@ public class VoteLogService extends AbstractDbBeanService<VoteLog> implements IV
 			}
 
 			@Override
-			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans) {
+			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans)
+					throws Exception {
 				super.onAfterInsert(manager, beans);
 				for (final Object o : beans) {
 					updateVotes((VoteLog) o, 0);

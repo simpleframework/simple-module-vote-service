@@ -34,7 +34,7 @@ public class VoteGroupService extends AbstractDbBeanService<VoteGroup> implement
 
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> service,
-					final IParamsValue paramsValue) {
+					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(service, paramsValue);
 				for (final VoteGroup vg : coll(paramsValue)) {
 					viService.deleteWith("groupId=?", vg.getId());

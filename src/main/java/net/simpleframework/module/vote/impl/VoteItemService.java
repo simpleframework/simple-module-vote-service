@@ -48,7 +48,7 @@ public class VoteItemService extends AbstractDbBeanService<VoteItem> implements 
 
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> service,
-					final IParamsValue paramsValue) {
+					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(service, paramsValue);
 				for (final VoteItem vi : coll(paramsValue)) {
 					vlogService.deleteWith("itemId=?", vi.getId());
