@@ -44,13 +44,13 @@ public class VoteItemService extends AbstractDbBeanService<VoteItem> implements 
 	public void onInit() throws Exception {
 		super.onInit();
 
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<VoteItem>() {
 
 			@Override
-			public void onBeforeDelete(final IDbEntityManager<?> service,
+			public void onBeforeDelete(final IDbEntityManager<VoteItem> manager,
 					final IParamsValue paramsValue) throws Exception {
-				super.onBeforeDelete(service, paramsValue);
-				for (final VoteItem vi : coll(paramsValue)) {
+				super.onBeforeDelete(manager, paramsValue);
+				for (final VoteItem vi : coll(manager, paramsValue)) {
 					vlogService.deleteWith("itemId=?", vi.getId());
 				}
 			}

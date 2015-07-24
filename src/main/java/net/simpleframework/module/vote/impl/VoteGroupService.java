@@ -30,13 +30,13 @@ public class VoteGroupService extends AbstractDbBeanService<VoteGroup> implement
 	public void onInit() throws Exception {
 		super.onInit();
 
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<VoteGroup>() {
 
 			@Override
-			public void onBeforeDelete(final IDbEntityManager<?> service,
+			public void onBeforeDelete(final IDbEntityManager<VoteGroup> manager,
 					final IParamsValue paramsValue) throws Exception {
-				super.onBeforeDelete(service, paramsValue);
-				for (final VoteGroup vg : coll(paramsValue)) {
+				super.onBeforeDelete(manager, paramsValue);
+				for (final VoteGroup vg : coll(manager, paramsValue)) {
 					viService.deleteWith("groupId=?", vg.getId());
 				}
 			}

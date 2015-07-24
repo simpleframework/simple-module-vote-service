@@ -56,12 +56,12 @@ public class VoteService extends AbstractDbBeanService<Vote> implements IVoteSer
 	public void onInit() throws Exception {
 		super.onInit();
 
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<Vote>() {
 			@Override
-			public void onBeforeDelete(final IDbEntityManager<?> service,
+			public void onBeforeDelete(final IDbEntityManager<Vote> manager,
 					final IParamsValue paramsValue) throws Exception {
-				super.onBeforeDelete(service, paramsValue);
-				for (final Vote vote : coll(paramsValue)) {
+				super.onBeforeDelete(manager, paramsValue);
+				for (final Vote vote : coll(manager, paramsValue)) {
 					final ID voteId = vote.getId();
 					if (vote.isGroups()) {
 						vgService.deleteWith("voteId=?", voteId);

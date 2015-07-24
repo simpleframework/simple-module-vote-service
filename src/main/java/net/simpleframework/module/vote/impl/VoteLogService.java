@@ -61,22 +61,22 @@ public class VoteLogService extends AbstractDbBeanService<VoteLog> implements IV
 	public void onInit() throws Exception {
 		super.onInit();
 
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<VoteLog>() {
 			@Override
-			public void onBeforeDelete(final IDbEntityManager<?> manager,
+			public void onBeforeDelete(final IDbEntityManager<VoteLog> manager,
 					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
-				for (final VoteLog log : coll(paramsValue)) {
+				for (final VoteLog log : coll(manager, paramsValue)) {
 					updateVotes(log, -1);
 				}
 			}
 
 			@Override
-			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans)
+			public void onAfterInsert(final IDbEntityManager<VoteLog> manager, final VoteLog[] beans)
 					throws Exception {
 				super.onAfterInsert(manager, beans);
-				for (final Object o : beans) {
-					updateVotes((VoteLog) o, 0);
+				for (final VoteLog o : beans) {
+					updateVotes(o, 0);
 				}
 			}
 
