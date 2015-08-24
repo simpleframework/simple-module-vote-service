@@ -4,6 +4,7 @@ import java.util.Date;
 
 import net.simpleframework.ado.bean.AbstractTextDescriptionBean;
 import net.simpleframework.ado.bean.IDateAwareBean;
+import net.simpleframework.ado.bean.IOrderBeanAware;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 import net.simpleframework.module.common.content.EContentStatus;
@@ -17,7 +18,7 @@ import net.simpleframework.module.common.content.EContentStatus;
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityUpdateLogAdapter",
 		"net.simpleframework.module.log.EntityDeleteLogAdapter" }, columns = { "expiredDate",
 		"status", "anonymous", "multiple", "logging" })
-public class Vote extends AbstractTextDescriptionBean implements IDateAwareBean {
+public class Vote extends AbstractTextDescriptionBean implements IDateAwareBean, IOrderBeanAware {
 
 	/* 投票标识 */
 	private int voteMark;
@@ -123,10 +124,12 @@ public class Vote extends AbstractTextDescriptionBean implements IDateAwareBean 
 		this.groups = groups;
 	}
 
+	@Override
 	public int getOorder() {
 		return oorder;
 	}
 
+	@Override
 	public void setOorder(final int oorder) {
 		this.oorder = oorder;
 	}
