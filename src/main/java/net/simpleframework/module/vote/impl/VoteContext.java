@@ -2,7 +2,6 @@ package net.simpleframework.module.vote.impl;
 
 import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.db.DbEntityTable;
-import net.simpleframework.ado.db.IDbEntityTableRegistry;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.module.common.AbstractCommonModuleContext;
 import net.simpleframework.module.vote.IVoteContext;
@@ -22,10 +21,10 @@ import net.simpleframework.module.vote.VoteR;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class VoteContext extends AbstractCommonModuleContext implements IVoteContext,
-		IDbEntityTableRegistry {
+public abstract class VoteContext extends AbstractCommonModuleContext implements IVoteContext {
+
 	@Override
-	public DbEntityTable[] createEntityTables() {
+	protected DbEntityTable[] createEntityTables() {
 		return new DbEntityTable[] { new DbEntityTable(Vote.class, "sf_vote"),
 				new DbEntityTable(VoteR.class, "sf_voter"),
 				new DbEntityTable(VoteGroup.class, "sf_vote_group"),
