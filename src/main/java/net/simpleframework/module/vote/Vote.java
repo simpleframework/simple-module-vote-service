@@ -60,6 +60,9 @@ public class Vote extends AbstractTextDescriptionBean implements IDateAwareBean,
 
 	@Override
 	public Date getCreateDate() {
+		if (createDate == null) {
+			createDate = new Date();
+		}
 		return createDate;
 	}
 
