@@ -34,7 +34,7 @@ public abstract class VoteContext extends AbstractCommonModuleContext implements
 
 	@Override
 	protected Module createModule() {
-		return new Module().setName(MODULE_NAME).setText($m("VoteContext.0")).setOrder(23);
+		return super.createModule().setName(MODULE_NAME).setText($m("VoteContext.0")).setOrder(23);
 	}
 
 	@Override
