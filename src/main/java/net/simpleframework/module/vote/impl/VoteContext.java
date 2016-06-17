@@ -1,6 +1,7 @@
 package net.simpleframework.module.vote.impl;
 
 import static net.simpleframework.common.I18n.$m;
+
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.module.common.AbstractCommonModuleContext;

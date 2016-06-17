@@ -19,8 +19,8 @@ import net.simpleframework.module.vote.VoteLog;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class VoteLogService extends AbstractDbBeanService<VoteLog> implements IVoteLogService,
-		IVoteServiceImplAware {
+public class VoteLogService extends AbstractDbBeanService<VoteLog>
+		implements IVoteLogService, IVoteServiceImplAware {
 
 	@Override
 	public IDataQuery<VoteLog> query(final VoteItem item) {
