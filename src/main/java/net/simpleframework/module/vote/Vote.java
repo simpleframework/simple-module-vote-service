@@ -7,7 +7,7 @@ import net.simpleframework.ado.bean.IDateAwareBean;
 import net.simpleframework.ado.bean.IOrderBeanAware;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
-import net.simpleframework.module.common.content.EContentStatus;
+import net.simpleframework.module.common.content.AbstractContentBean.EContentStatus;
 
 /**
  * Licensed under the Apache License, Version 2.0
